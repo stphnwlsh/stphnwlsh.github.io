@@ -1,4 +1,27 @@
 baseURL = 'http://stphnwlsh.github.io'
 languageCode = 'en-au'
 title = 'Stephen Walsh'
-theme = "ananke"
+# Enable comments by entering your Disqus shortname
+# disqusShortname = ""
+# Enable Google Analytics by entering your tracking code
+googleAnalytics = ""
+theme = "hugo-sustain"
+
+[permalinks]
+  post = "/:year/:month/:day/:slug"
+
+[params]
+  avatar = "img/profile.png"
+  author = "Stephen Walsh"
+  description = "Personal profile site"
+
+  # Custom assets can be linked with their paths relative to static/
+  custom_css = []
+  custom_js  = []
+
+[params.social]
+  Github        = "stphnwlsh"
+  Twitter       = "stphnwlsh"
+  LinkedIn      = "stphnwlsh"
+  Stackoverflow = "stphnwlsh"
+  Medium        = "stphnwlsh"
