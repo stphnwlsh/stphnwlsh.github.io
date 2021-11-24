@@ -3,7 +3,7 @@ name: Gatsby Publish
 on:
   push:
     branches:
-      - dev
+      - main
 
 jobs:
   build:
@@ -13,5 +13,3 @@ jobs:
       - uses: enriikke/gatsby-gh-pages-action@v2
         with:
           access-token: ${{ secrets.ACCESS_TOKEN }}
-          deploy-branch: gh-pages
-          gatsby-args: --prefix-paths
