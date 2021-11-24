@@ -1,0 +1,23 @@
+baseURL = "https://stphnwlsh.github.io"
+languageCode = "en-AU"
+title = "Stephen Walsh"
+# Enable Google Analytics by entering your tracking code
+googleAnalytics = ""
+theme = "sustain"
+
+[permalinks]
+  post = "/:year/:month/:day/:slug"
+
+[params]
+  avatar = "img/profile.png"
+  author = "Stephen Walsh"
+  description = "Personal website with info about me."
+
+  # Custom assets can be linked with their paths relative to static/
+  custom_css = []
+  custom_js  = []
+
+[params.social]
+  Github        = "stphnwlsh"
+  LinkedIn      = "stphnwlsh"
+  Medium        = "stphnwlsh"
