@@ -1,0 +1,4 @@
+baseURL = 'http://stphnwlsh.github.io'
+languageCode = 'en-au'
+title = 'Stephen Walsh'
+theme = "ananke"
