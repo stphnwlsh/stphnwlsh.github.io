@@ -1,0 +1,19 @@
+{
+  "name": "stphnwlsh.github.io",
+  "version": "0.0.1",
+  "description": "testing",
+  "main": "index.js",
+  "authors": {
+    "name": "Stephen Walsh",
+    "email": "stephenrobertwalsh@gmail.com"
+  },
+  "repository": "https://github.com/stphnwlsh/stphnwlsh.github.io/stphnwlsh.github.io",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}
