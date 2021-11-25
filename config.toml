@@ -16,7 +16,7 @@ theme = "hugo-sustain"
   description = "Personal profile site"
 
   # Custom assets can be linked with their paths relative to static/
-  custom_css = []
+  custom_css = ["css/overrides.css"]
   custom_js  = []
 
 [params.social]
@@ -25,3 +25,15 @@ theme = "hugo-sustain"
   LinkedIn      = "stphnwlsh"
   Stackoverflow = "stphnwlsh"
   Medium        = "stphnwlsh"
+
+## Main Menu
+[[menu.main]]
+  name = "LinkedIn"
+  weight = 100
+  identifier = "linkedin"
+  url = "https://www.linkedin.com/in/stphnwlsh/"
+[[menu.main]]
+  name = "Github"
+  identifier = "github"
+  weight = 200
+  url = "https://github.com/stphnwlsh"
