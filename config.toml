@@ -4,7 +4,7 @@ title = 'Stephen Walsh'
 # Enable comments by entering your Disqus shortname
 # disqusShortname = ""
 # Enable Google Analytics by entering your tracking code
-googleAnalytics = ""
+googleAnalytics = "G-NZ7C1P4YT0"
 theme = "hugo-sustain"
 
 [permalinks]
