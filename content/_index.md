@@ -9,6 +9,8 @@ Professional History is on [LinkedIn]
 
 Contact me via [LinkedIn], I actually do respond to people
 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/stphnwlsh)
+
 [Github]: https://github.com/stphnwlsh
 [LinkedIn]: https://www.linkedin.com/in/stphnwlsh
 [Tigerspike]: https://tigerspike.com

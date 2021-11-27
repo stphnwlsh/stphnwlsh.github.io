@@ -21,9 +21,7 @@ theme = "hugo-sustain"
 
 [params.social]
   Github        = "stphnwlsh"
-  Twitter       = "stphnwlsh"
   LinkedIn      = "stphnwlsh"
-  Stackoverflow = "stphnwlsh"
   Medium        = "stphnwlsh"
 
 ## Main Menu
