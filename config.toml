@@ -26,12 +26,17 @@ theme = "hugo-sustain"
 
 ## Main Menu
 [[menu.main]]
-  name = "LinkedIn"
-  weight = 100
-  identifier = "linkedin"
-  url = "https://www.linkedin.com/in/stphnwlsh/"
-[[menu.main]]
   name = "Github"
   identifier = "github"
-  weight = 200
+  weight = 100
   url = "https://github.com/stphnwlsh"
+[[menu.main]]
+  name = "LinkedIn"
+  weight = 200
+  identifier = "linkedin"
+  url = "https://www.linkedin.com/in/stphnwlsh"
+[[menu.main]]
+  name = "Blog"
+  weight = 300
+  identifier = "blog"
+  url = "https://stphnwlsh.hashnode.dev"
