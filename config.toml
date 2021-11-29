@@ -22,7 +22,7 @@ theme = "hugo-sustain"
 [params.social]
   Github        = "stphnwlsh"
   LinkedIn      = "stphnwlsh"
-  Medium        = "stphnwlsh"
+  Hashnode      = "stphnwlsh"
 
 ## Main Menu
 [[menu.main]]
