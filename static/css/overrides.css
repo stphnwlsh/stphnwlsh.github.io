@@ -61,6 +61,10 @@ body {
     background-color: #e6decd
 }
 
+.avatar {
+    padding-top: 0;
+}
+
 
 /* light: #fbfaf8; */
 /* creme: #e6decd; */
