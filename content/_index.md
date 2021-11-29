@@ -7,7 +7,7 @@ Personal Projects are on [Github]
 
 Professional History is on [LinkedIn]
 
-Bloggin is on [Hashnode]
+Blog posts are on [Hashnode]
 
 Contact me via [LinkedIn], I actually do respond to people
 
