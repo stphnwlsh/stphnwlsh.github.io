@@ -7,9 +7,9 @@ Personal Projects are on [Github]
 
 Professional History is on [LinkedIn]
 
-Contact me via [LinkedIn], I actually do respond to people
+Bloggin is on [Hashnode]
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/stphnwlsh)
+Contact me via [LinkedIn], I actually do respond to people
 
 [Github]: https://github.com/stphnwlsh
 [Hashnode]: https://stphnwlsh.hashnode.dev
