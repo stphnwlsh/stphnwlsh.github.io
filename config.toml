@@ -10,7 +10,7 @@ disableKinds = ["taxonomy", "term"]
     { github = "https://github.com/stphnwlsh" },
     { dev = "https://dev.to/stphnwlsh" },
     { twitter = "https://twitter.com/stphnwlsh" },
-    { linkedin = { href = "https://fontawesome.com/" } },
+    { linkedin = { href = "https://www.linkedin.com/in/stphnwlsh" } },
   ]
 
 [markup.highlight]
