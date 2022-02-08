@@ -1,42 +1,20 @@
-baseURL = 'https://stphnwlsh.github.io'
-languageCode = 'en-au'
-title = 'Stephen Walsh'
-# Enable comments by entering your Disqus shortname
-# disqusShortname = ""
-# Enable Google Analytics by entering your tracking code
-GoogleAnalytics = "G-NZ7C1P4YT0"
-theme = "hugo-sustain"
+theme = "lynx"
 
-[permalinks]
-  post = "/:year/:month/:day/:slug"
+enableEmoji = true
+disableKinds = ["taxonomy", "term"]
 
-[params]
-  avatar = "img/profile.png"
-  author = "Stephen Walsh"
-  description = "Personal profile site"
+[author]
+  image = "profile.png"
+  links = [
+    { github = "https://github.com/stphnwlsh" },
+    { dev = "https://dev.to/stphnwlsh" },
+    { twitter = "https://twitter.com/stphnwlsh" },
+    { linkedin = { href = "https://fontawesome.com/" } },
+  ]
 
-  # Custom assets can be linked with their paths relative to static/
-  custom_css = ["/css/overrides.css"]
-  custom_js  = []
+[markup.highlight]
+  noClasses = false
 
-[params.social]
-  Github        = "stphnwlsh"
-  LinkedIn      = "stphnwlsh"
-  Hashnode      = "stphnwlsh"
-
-## Main Menu
-[[menu.main]]
-  name = "Github"
-  identifier = "github"
-  weight = 100
-  url = "https://github.com/stphnwlsh"
-[[menu.main]]
-  name = "LinkedIn"
-  weight = 200
-  identifier = "linkedin"
-  url = "https://www.linkedin.com/in/stphnwlsh"
-[[menu.main]]
-  name = "Blog"
-  weight = 300
-  identifier = "blog"
-  url = "https://stphnwlsh.hashnode.dev"
+[markup.goldmark]
+[markup.goldmark.renderer]
+  unsafe = true
