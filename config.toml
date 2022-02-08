@@ -1,4 +1,5 @@
 theme = "lynx"
+googleAnalytics = "G-NZ7C1P4YT0"
 
 enableEmoji = true
 disableKinds = ["taxonomy", "term"]
