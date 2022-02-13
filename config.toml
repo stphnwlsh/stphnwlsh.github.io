@@ -1,6 +1,7 @@
 theme = "lynx"
 title = "Stephen Walsh"
 languageCode = "en-au"
+baseUrl = "https://stphnwlsh.github.io"
 googleAnalytics = "G-NZ7C1P4YT0"
 
 enableEmoji = true
@@ -8,7 +9,7 @@ disableKinds = ["taxonomy", "term"]
 
 [author]
   image = "profile.png"
-  
+
   links = [
     { github = "https://github.com/stphnwlsh" },
     { dev = "https://dev.to/stphnwlsh" },
