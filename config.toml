@@ -9,7 +9,7 @@ disableKinds = ["taxonomy", "term"]
 
 [author]
   image = "profile.png"
-
+  alternative = "Stephen Walsh | Husband | Father | Software Engineer | Learner | Leader"
   links = [
     { github = "https://github.com/stphnwlsh" },
     { dev = "https://dev.to/stphnwlsh" },
@@ -25,5 +25,5 @@ disableKinds = ["taxonomy", "term"]
   unsafe = true
 
 [params]
-  keywords = "stephen,walsh,software,engineer,developer,profile,blogger"
+  keywords = "stphnwlsh,stephen,walsh,software,engineer,developer,profile,blogger"
   robots = "index,follow"
