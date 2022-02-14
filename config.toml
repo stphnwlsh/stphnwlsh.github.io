@@ -14,7 +14,8 @@ disableKinds = ["taxonomy", "term"]
     { github = "https://github.com/stphnwlsh" },
     { dev = "https://dev.to/stphnwlsh" },
     { twitter = "https://twitter.com/stphnwlsh" },
-    { linkedin = { href = "https://www.linkedin.com/in/stphnwlsh" } },
+    { linkedin = "https://www.linkedin.com/in/stphnwlsh" },
+    { nuget = { href = "https://www.nuget.org/profiles/stphnwlsh", text = "NuGet" } },
   ]
 
 [markup.highlight]
