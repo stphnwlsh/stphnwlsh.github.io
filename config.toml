@@ -12,7 +12,7 @@ disableKinds = ["taxonomy", "term"]
   alternative = "Stephen Walsh | Husband | Father | Software Engineer | Learner | Leader"
   links = [
     { github = "https://github.com/stphnwlsh" },
-    { dev = "https://dev.to/stphnwlsh" },
+    { medium = "https://medium.com/@stphnwlsh" },
     { twitter = "https://twitter.com/stphnwlsh" },
     { linkedin = "https://www.linkedin.com/in/stphnwlsh" },
     { nuget = { href = "https://www.nuget.org/profiles/stphnwlsh", text = "NuGet" } },
@@ -26,5 +26,5 @@ disableKinds = ["taxonomy", "term"]
   unsafe = true
 
 [params]
-  keywords = "stphnwlsh,stephen,walsh,software,engineer,developer,profile,blogger"
+  keywords = "stphnwlsh,stephen,walsh,software,engineer,developer,profile,blogger,learner,leader"
   robots = "index,follow"
