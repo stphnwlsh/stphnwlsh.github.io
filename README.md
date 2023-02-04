@@ -1,6 +1,6 @@
 # GitHub Pages Personal Profile
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/stphnwlsh/stphnwlsh.github.io/GitHub%20Pages?label=Build%20Pipeline&logo=github&logoColor=white&style=for-the-badge)](https://github.com/stphnwlsh/stphnwlsh.github.io/actions/workflows/github-pages.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/stphnwlsh/stphnwlsh.github.io/github-pages.yml?label=Build%20Pipeline&logo=github&style=for-the-badge)](https://github.com/stphnwlsh/stphnwlsh.github.io/actions/workflows/github-pages.yml)
 
 This is a simple personal page built on GitHub pages.  The aim was to put in as little effort as possible while making something fairly custom as a landing page for me.  
 
