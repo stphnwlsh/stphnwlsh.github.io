@@ -7,7 +7,7 @@ googleAnalytics = "G-NZ7C1P4YT0"
 enableEmoji = true
 disableKinds = ["taxonomy", "term"]
 
-[author]
+[params.author]
   image = "profile.png"
   alternative = "Stephen Walsh | Husband | Father | Software Engineer | Learner | Leader"
   links = [
