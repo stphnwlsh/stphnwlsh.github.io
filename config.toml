@@ -13,7 +13,6 @@ disableKinds = ["taxonomy", "term"]
   links = [
     { github = "https://github.com/stphnwlsh" },
     { medium = "https://medium.com/@stphnwlsh" },
-    { githubsponsor = { href = "https://github.com/sponsors/stphnwlsh", text = "GitHub Sponsor" } },
     { linkedin = "https://www.linkedin.com/in/stphnwlsh" },
     { nuget = { href = "https://www.nuget.org/profiles/stphnwlsh", text = "NuGet" } },
   ]
