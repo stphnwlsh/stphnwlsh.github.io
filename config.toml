@@ -11,10 +11,9 @@ disableKinds = ["taxonomy", "term"]
   image = "profile.png"
   alternative = "Stephen Walsh | Husband | Father | Software Engineer | Learner | Leader"
   links = [
+    { linkedin = "https://www.linkedin.com/in/stphnwlsh" },
     { github = "https://github.com/stphnwlsh" },
     { medium = "https://medium.com/@stphnwlsh" },
-    { linkedin = "https://www.linkedin.com/in/stphnwlsh" },
-    { nuget = { href = "https://www.nuget.org/profiles/stphnwlsh", text = "NuGet" } },
   ]
 
 [markup.highlight]
