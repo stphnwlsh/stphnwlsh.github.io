@@ -14,8 +14,35 @@
   width: 16rem;
 }
 
-/* Colour Palette */
-/* light: #fbfaf8; */
-/* creme: #e6decd; */
-/* green: #698f40; */
-/* navy: #0b132a; */
+/* True Dark Theme Overrides */
+body {
+    background-color: #121212 !important;
+}
+
+.dark .text-neutral-800,
+.dark .text-neutral-700,
+.dark body {
+    color: #e5e7eb !important; /* Tailwind gray-200 */
+}
+
+.dark a[class*="link-"] {
+    background-color: #1e1e1e; /* Slightly lighter than background for depth */
+    border: 1px solid #333;
+    color: #60a5fa !important; /* Bright blue (Tailwind blue-400) */
+    transition: all 0.2s ease-in-out;
+}
+
+.dark a[class*="link-"]:hover {
+    background-color: #262626;
+    border-color: #60a5fa;
+    transform: translateY(-2px);
+}
+
+.dark svg {
+    fill: #f3f4f6; /* Tailwind gray-100 */
+}
+
+.dark .bg-white, 
+.dark .bg-neutral-50 {
+    background-color: #1a1a1a !important;
+}
