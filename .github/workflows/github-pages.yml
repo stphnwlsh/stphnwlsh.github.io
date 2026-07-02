@@ -23,6 +23,8 @@ jobs:
           # extended: true
 
       - name: Build
+        env:
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
         run: hugo --minify
 
       - name: Deploy
