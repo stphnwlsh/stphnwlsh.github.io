@@ -1,6 +1,6 @@
 theme = "lynx"
 title = "Stephen Walsh"
-languageCode = "en-au"
+locale = "en-au"
 baseUrl = "https://stphnwlsh.github.io"
 googleAnalytics = "${GOOGLE_ANALYTICS_ID}"
 
