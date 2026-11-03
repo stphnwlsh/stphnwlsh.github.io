@@ -6,11 +6,11 @@
     "Husband · Father · Software Engineer",
     "Mentor · Learner · Leader"
   ],
-  "description": "Software engineering leader in Neenah, Wisconsin. Husband, father, mentor and the tinkerer behind Lean Mean Clean Apps.",
+  "description": "Husband, father and software engineering leader in Neenah, WI. Powered by coffee, haunted by Liverpool, moustached every November. I don't bite… often.",
   "goatcounter": "stphnwlsh",
   "about": [
-    "I'm a software engineering leader in Neenah, Wisconsin, by way of Australia. My favourite spot is where leading teams meets staying hands-on in the code: helping engineers grow while still caring about how the software is put together.",
-    "Outside of work I'm a husband and father first, a long-suffering Liverpool supporter, and a Movember regular. The moustache only visits in November, which everyone agrees is for the best."
+    "Hello! I'm a software engineering leader in Neenah, Wisconsin, by way of Australia. My favourite spot is where leading teams meets staying hands-on in the code: helping engineers grow, building teams that enjoy working together, and still caring about how the software is put together. I spend my days thinking about and solving complex problems, mostly in .NET, and now and then I write about engineering, interviews and careers on Medium.",
+    "In my spare time I look after Lean Mean Clean Apps, a small family of dotnet new templates with a low-ceremony take on Clean Architecture: fewer layers than an onion, more than a sandwich. Away from the keyboard I'm a husband and father first, a long-suffering Liverpool supporter, and usually holding a coffee. Every November I grow a mo and raise money for Movember. The moustache only visits in November, which everyone agrees is for the best. Feel free to say hi, I don't bite… often."
   ],
   "movember": {
     "url": "https://movember.com/m/stephenwalsh",
