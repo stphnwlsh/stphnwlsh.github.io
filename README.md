@@ -1,25 +1,42 @@
-# GitHub Pages Personal Profile
+# stphnwlsh.github.io
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/stphnwlsh/stphnwlsh.github.io/github-pages.yml?label=Build%20Pipeline&logo=github&style=for-the-badge)](https://github.com/stphnwlsh/stphnwlsh.github.io/actions/workflows/github-pages.yml)
 
-This is a simple personal page built on GitHub pages.  The aim was to put in as little effort as possible while making something fairly custom as a landing page for me.  
+My corner of the internet: one page that says who I am, shows off the [Lean Mean Clean Apps](https://leanmeancleanapps.github.io) templates, points at the things I've written and tells you where else to find me. It lives at [stphnwlsh.github.io](https://stphnwlsh.github.io).
 
-I wrote a post about how I created this site on Medium.  [Check it out!](https://medium.com/gitconnected/build-your-personal-brand-with-a-profile-page-using-github-pages-and-hugo-6476de6071d1)
+## How it's built
 
-## References
+On purpose, with as little as possible. There's no framework and nothing to `npm install`, because one page doesn't need a node_modules folder heavier than the page.
 
-I used a number of freely available tools and templates along the way.
+- `src/site.json` holds the words: bio, templates, posts and links.
+- `src/styles.css` holds the look, using the colours and fonts from my [brand kit](https://github.com/stphnwlsh/stphnwlsh/tree/main/brand).
+- `public/` holds the fonts, avatars, icons and social cards, copied as they are.
+- `build.mjs` glues it all together into `dist/`. It needs Node 22 or newer and nothing else.
 
-- Hosting - [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages)
-- Website Framework - [Hugo](https://gohugo.io/)
-- Website Theme - [Lynx](https://github.com/jpanther/lynx)
-- Publishing - [GitHub Actions](https://docs.github.com/en/actions)
-- Publishing Action - [Shohei Ueda's Template](https://github.com/peaceiris)
+```sh
+node build.mjs                 # build for today's date
+MOVEMBER=on node build.mjs     # preview the November look any time of year
+npx serve dist                 # or any static server you like
+```
 
-Minor customisations made along the way via updates to CSS and my own content but that's all.
+## Movember mode
+
+Every November the moustache comes back and the page goes with it: navy colours, the Movember avatar, a donate strip and a QR code. Nobody has to remember to flip a switch.
+
+- A few lines of script in the page check the visitor's own date, so the switch happens on the day.
+- The build checks the date too (US Central time) so link previews show the right card. The workflow rebuilds daily to keep that honest.
+- Add `?movember=1` or `?movember=0` to the URL to preview either look.
+
+## Publishing
+
+[GitHub Actions](https://docs.github.com/en/actions) builds every pull request, and pushes to `main` deploy to the `gh-pages` branch with [Shohei Ueda's gh-pages action](https://github.com/peaceiris/actions-gh-pages).
+
+Visits are counted by [GoatCounter](https://www.goatcounter.com/): no cookies, no tracking you around the web, just a number that tells me whether anyone reads this.
+
+## A bit of history
+
+The first version of this site ran on [Hugo](https://gohugo.io/) and the [Lynx](https://github.com/jpanther/lynx) theme, and I wrote up [how I built it](https://medium.com/gitconnected/build-your-personal-brand-with-a-profile-page-using-github-pages-and-hugo-6476de6071d1). It served me well, but a link page with a submodule felt like a lot of moving parts for not a lot of page.
 
 ## Support
 
-I'm sharing some of my work here and if it helps you, I'd love it if you'd consider supporting me.
-
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/stphnwlsh)
+If something I've built or written has helped you, I'd love it if you'd consider [sponsoring me](https://github.com/sponsors/stphnwlsh). And in November, the moustache would love it if you gave to [Movember](https://movember.com/m/stephenwalsh) instead.
