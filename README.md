@@ -11,7 +11,7 @@ On purpose, with as little as possible. There's no framework and nothing to `npm
 - `src/site.json` holds the words: bio, templates, posts and links.
 - `src/styles.css` holds the look, using the colours and fonts from my [brand kit](https://github.com/stphnwlsh/stphnwlsh/tree/main/brand).
 - `public/` holds the fonts, avatars, icons and social cards, copied as they are.
-- `build.mjs` glues it all together into `dist/`. It needs Node 22 or newer and nothing else.
+- `build.mjs` glues it all together into `dist/`. It needs Node 22 or newer (CI uses the version in `.nvmrc`) and nothing else.
 
 ```sh
 node build.mjs                 # build for today's date
@@ -29,7 +29,7 @@ Every November the moustache comes back and the page goes with it: navy colours,
 
 ## Publishing
 
-[GitHub Actions](https://docs.github.com/en/actions) builds every pull request, and pushes to `main` deploy to the `gh-pages` branch with [Shohei Ueda's gh-pages action](https://github.com/peaceiris/actions-gh-pages).
+[GitHub Actions](https://docs.github.com/en/actions) builds every pull request, and pushes to `main` publish straight to GitHub Pages with the official [deploy-pages](https://github.com/actions/deploy-pages) action, the same setup as the [Lean Mean Clean Apps](https://leanmeancleanapps.github.io) site. No `gh-pages` branch required.
 
 Visits are counted by [GoatCounter](https://www.goatcounter.com/): no cookies, no tracking you around the web, just a number that tells me whether anyone reads this.
 
