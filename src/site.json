@@ -73,25 +73,26 @@
     {
       "title": "Full Stack Engineers Don't Exist!",
       "where": "Better Programming",
-      "year": 2023,
-      "url": "https://medium.com/better-programming/full-stack-engineers-dont-exist-37afb7a6b26c"
+      "url": "https://medium.com/better-programming/full-stack-engineers-dont-exist-37afb7a6b26c",
+      "blurb": "A friendly rant about the job title everyone hires for and nobody actually is."
     },
     {
       "title": "Making Software Engineering Interviews More Creative and Interesting",
       "where": "Medium",
-      "year": 2022,
-      "url": "https://medium.com/@stphnwlsh/making-software-engineering-interviews-more-creative-and-interesting-f25a9f001a2"
+      "url": "https://medium.com/@stphnwlsh/making-software-engineering-interviews-more-creative-and-interesting-f25a9f001a2",
+      "blurb": "Interview ideas that show how people think, not how well they memorise."
     },
     {
       "title": "A Cleaner Startup for .NET 6's Minimal Approach",
       "where": "ITNEXT",
-      "year": 2022,
-      "url": "https://medium.com/itnext/a-cleaner-startup-for-net-6s-minimal-approach-c1c05a672c6a"
+      "url": "https://medium.com/itnext/a-cleaner-startup-for-net-6s-minimal-approach-c1c05a672c6a",
+      "blurb": "Tidying up a Minimal API's startup, and where the Clean Minimal API began."
     },
     {
       "title": "Bending DateTime in .NET 8 to Test Your Code Better",
       "where": "Level Up Coding",
-      "url": "https://medium.com/gitconnected/bending-datetime-in-net-8-to-test-your-code-better-52e5cd83be4c"
+      "url": "https://medium.com/gitconnected/bending-datetime-in-net-8-to-test-your-code-better-52e5cd83be4c",
+      "blurb": "Taking control of time in .NET 8 so your tests stop arguing with the clock."
     }
   ],
   "links": [

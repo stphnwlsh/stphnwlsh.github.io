@@ -31,7 +31,8 @@ const templates = site.lmca.templates.map(t => `
 const writing = site.writing.map(w => `
         <li><a class="card post" href="${w.url}" ${ext}>
           <span class="post-title">${esc(w.title)}</span>
-          <span class="post-meta">${esc(w.where)}${w.year ? ` · ${w.year}` : ''}</span>
+          <span class="post-blurb">${esc(w.blurb)}</span>
+          <span class="post-meta">${esc(w.where)}</span>
         </a></li>`).join('');
 
 const links = site.links.map(l => `<li><a class="pill" href="${l.url}" ${ext}>${esc(l.name)}</a></li>`).join('');
