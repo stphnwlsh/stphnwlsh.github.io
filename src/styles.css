@@ -37,7 +37,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--bg); color: var(--text); font: 400 18px/1.6 var(--sans); }
+body { overflow-x: clip; margin: 0; background: var(--bg); color: var(--text); font: 400 18px/1.6 var(--sans); }
 a { color: var(--link); text-underline-offset: 0.18em; }
 a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 3px solid var(--link); outline-offset: 3px; border-radius: 4px; }
@@ -63,7 +63,7 @@ p, .post-blurb { text-wrap: pretty; }
 .strip a { font-weight: 600; }
 
 /* Hero */
-.hero { overflow: clip; display: grid; grid-template-columns: 1fr minmax(240px, 400px); align-items: end; gap: 24px; padding-block: 48px 0; }
+.hero { overflow: visible clip; display: grid; grid-template-columns: 1fr minmax(240px, 400px); align-items: end; gap: 24px; padding-block: 48px 0; }
 .hero-text { padding-bottom: 72px; }
 .chip { display: inline-block; margin: 0 0 18px; padding: 6px 16px; border-radius: 999px; font: 600 16px/1.4 var(--mono);
   color: var(--link); background: color-mix(in srgb, var(--link) 14%, transparent); }
