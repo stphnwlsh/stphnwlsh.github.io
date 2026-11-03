@@ -101,7 +101,8 @@ h2 + .lede { margin-top: -12px; }
 .post:hover .post-title { text-decoration: underline; }
 .post-title { display: block; font-family: var(--serif); font-size: 26px; line-height: 1.15; margin-bottom: 10px; }
 .posts { grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); }
-.post-meta { font-size: 15px; color: var(--muted); }
+.post-blurb { display: block; margin-bottom: 12px; font-size: 16px; }
+.post-meta { margin-top: auto; font-size: 15px; color: var(--muted); }
 
 /* Find me */
 .pills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; }
