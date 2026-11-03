@@ -1,5 +1,5 @@
-# Hugo default output directory
-/public
+# Build output (node build.mjs)
+/dist
 
 ## OS Files
 # Windows
