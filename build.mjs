@@ -16,6 +16,7 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 const month = Number(new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', month: 'numeric' }).format(new Date()));
 const movember = process.env.MOVEMBER ? process.env.MOVEMBER === 'on' : month === 11;
 const year = new Date().getFullYear();
+const mo = movember ? '-movember' : ''; // favicon suffix
 const ext = 'target="_blank" rel="noopener"';
 
 const templates = site.lmca.templates.map(t => `
@@ -44,9 +45,9 @@ const html = `<!doctype html>
   <meta name="description" content="${esc(site.description)}">
   <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="${site.url}/">
-  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="/img/favicon-32.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="icon" href="/img/favicon${mo}.svg" type="image/svg+xml">
+  <link rel="icon" href="/img/favicon${mo}-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon${mo}.png">
   <meta property="og:type" content="profile">
   <meta property="og:url" content="${site.url}/">
   <meta property="og:title" content="${esc(site.name)}">
@@ -61,7 +62,11 @@ const html = `<!doctype html>
     // Movember mode follows the visitor's date. ?movember=1 or ?movember=0 previews either look.
     (() => {
       const q = new URLSearchParams(location.search).get('movember');
-      document.documentElement.toggleAttribute('data-movember', q ? q === '1' : new Date().getMonth() === 10);
+      const on = q ? q === '1' : new Date().getMonth() === 10;
+      document.documentElement.toggleAttribute('data-movember', on);
+      // The favicon grows a moustache too.
+      for (const l of document.querySelectorAll('link[rel~="icon"], link[rel="apple-touch-icon"]'))
+        l.href = l.getAttribute('href').replace(/(favicon|apple-touch-icon)(-movember)?/, on ? '$1-movember' : '$1');
     })();
   </script>
   <style>

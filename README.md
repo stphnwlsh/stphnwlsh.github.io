@@ -21,7 +21,7 @@ npx serve dist                 # or any static server you like
 
 ## Movember mode
 
-Every November the moustache comes back and the page goes with it: navy colours, the Movember avatar, a donate strip and a QR code. Nobody has to remember to flip a switch.
+Every November the moustache comes back and the page goes with it: navy colours, the Movember avatar, a donate strip, a QR code and a moustache on the favicon. Nobody has to remember to flip a switch.
 
 - A few lines of script in the page check the visitor's own date, so the switch happens on the day.
 - The build checks the date too (US Central time) so link previews show the right card. The workflow rebuilds daily to keep that honest.
