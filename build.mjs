@@ -20,16 +20,17 @@ const ext = 'target="_blank" rel="noopener"';
 
 const templates = site.lmca.templates.map(t => `
         <li class="card template" style="--hue: ${t.hue}">
+          <img class="on-light" src="/img/lmca/${t.key}-light.svg" width="72" height="72" alt="" loading="lazy">
+          <img class="on-dark" src="/img/lmca/${t.key}.svg" width="72" height="72" alt="" loading="lazy">
           <h3>${esc(t.name)}</h3>
           <p>${esc(t.builds)}</p>
-          <code>dotnet new install ${esc(t.package)}</code>
-          <p class="card-links"><a href="${t.docs}">Docs</a><a href="${t.repo}">GitHub</a></p>
+          <p class="card-links"><a class="badge" href="${t.docs}" ${ext}>Docs</a><a class="badge" href="${t.repo}" ${ext}>GitHub</a></p>
         </li>`).join('');
 
 const writing = site.writing.map(w => `
         <li><a class="card post" href="${w.url}" ${ext}>
           <span class="post-title">${esc(w.title)}</span>
-          <span class="post-meta">${esc(w.where)} · ${w.year}</span>
+          <span class="post-meta">${esc(w.where)}${w.year ? ` · ${w.year}` : ''}</span>
         </a></li>`).join('');
 
 const links = site.links.map(l => `<li><a class="pill" href="${l.url}" ${ext}>${esc(l.name)}</a></li>`).join('');
@@ -112,20 +113,19 @@ ${css}
 
     <section id="writing" aria-labelledby="writing-title">
       <h2 id="writing-title">Writing</h2>
+      <p class="lede">${esc(site.writingIntro)}</p>
       <ul class="grid posts">${writing}
       </ul>
     </section>
 
     <section id="find-me" aria-labelledby="find-title">
       <h2 id="find-title">Find me</h2>
+      <p class="lede">${esc(site.findIntro)}</p>
       <ul class="pills">${links}</ul>
-      <p class="aside">Want to know what I'm like to work with? <a href="${site.recommendations}" ${ext}>Read my recommendations on LinkedIn.</a></p>
     </section>
   </main>
 
   <footer>
-    <img class="mono mono-light" src="/img/sw-monogram-light.svg" width="40" height="40" alt="SW">
-    <img class="mono mono-dark" src="/img/sw-monogram-dark.svg" width="40" height="40" alt="SW">
     <p>© ${year} ${esc(site.name)}. No cookies here, just a visit counter.</p>
   </footer>
   <script data-goatcounter="https://${site.goatcounter}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

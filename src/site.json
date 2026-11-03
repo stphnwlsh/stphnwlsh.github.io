@@ -2,12 +2,15 @@
   "name": "Stephen Walsh",
   "handle": "stphnwlsh",
   "url": "https://stphnwlsh.github.io",
-  "tagline": ["Husband · Father · Software Engineer", "Mentor · Learner · Leader"],
-  "description": "Software engineering leader in Neenah, Wisconsin. Husband, father, mentor and the tinkerer behind Lean Mean Clean Apps.",
+  "tagline": [
+    "Husband · Father · Software Engineer",
+    "Mentor · Learner · Leader"
+  ],
+  "description": "Husband, father and software engineering leader in Neenah, WI. Powered by coffee, haunted by Liverpool, moustached every November. I don't bite… often.",
   "goatcounter": "stphnwlsh",
   "about": [
-    "I'm a software engineering leader in Neenah, Wisconsin, by way of Australia. My favourite spot is where leading teams meets staying hands-on in the code: helping engineers grow while still caring about how the software is put together.",
-    "Outside of work I'm a husband and father first, a long-suffering Liverpool supporter, and a Movember regular. The moustache only visits in November, which everyone agrees is for the best."
+    "Hello! I'm a software engineering leader in Neenah, Wisconsin, by way of Australia. My favourite spot is where leading teams meets staying hands-on in the code: helping engineers grow, building teams that enjoy working together, and still caring about how the software is put together. I spend my days thinking about and solving complex problems, mostly in .NET, and now and then I write about engineering, interviews and careers on Medium.",
+    "In my spare time I look after Lean Mean Clean Apps, a small family of dotnet new templates with a low-ceremony take on Clean Architecture: fewer layers than an onion, more than a sandwich. Away from the keyboard I'm a husband and father first, a long-suffering Liverpool supporter, and usually holding a coffee. Every November I grow a mo and raise money for Movember. The moustache only visits in November, which everyone agrees is for the best. Feel free to say hi, I don't bite… often."
   ],
   "movember": {
     "url": "https://movember.com/m/stephenwalsh",
@@ -17,27 +20,98 @@
   "lmca": {
     "url": "https://leanmeancleanapps.github.io",
     "github": "https://github.com/LeanMeanCleanApps",
-    "intro": "A small family of dotnet new templates with a low-ceremony take on Clean Architecture: fewer layers than an onion, more than a sandwich. Built by a small team, which is me for now.",
+    "intro": "What I build when the kids are asleep: five dotnet new templates with a low-ceremony take on Clean Architecture. Fewer layers than an onion, more than a sandwich. No investors, no roadmap deck, just a small team (me) having fun and giving it away.",
     "templates": [
-      { "name": "Clean Minimal API", "builds": "An HTTP API on ASP.NET Core Minimal APIs", "package": "CleanMinimalApi.Template", "docs": "https://leanmeancleanapps.github.io/minimalapi/", "repo": "https://github.com/LeanMeanCleanApps/CleanMinimalApi", "hue": "#10B981" },
-      { "name": "Clean Model Context Protocol", "builds": "A Model Context Protocol server on the MCP C# SDK", "package": "CleanModelContextProtocol.Template", "docs": "https://leanmeancleanapps.github.io/mcp/", "repo": "https://github.com/LeanMeanCleanApps/CleanModelContextProtocol", "hue": "#8B5CF6" },
-      { "name": "Clean GraphQL API", "builds": "A GraphQL API on Hot Chocolate", "package": "CleanGraphQLApi.Template", "docs": "https://leanmeancleanapps.github.io/graphql/", "repo": "https://github.com/LeanMeanCleanApps/CleanGraphQLApi", "hue": "#EC4899" },
-      { "name": "Clean Web API", "builds": "An HTTP API on ASP.NET Core controllers", "package": "CleanWebApi.Template", "docs": "https://leanmeancleanapps.github.io/webapi/", "repo": "https://github.com/LeanMeanCleanApps/CleanWebApi", "hue": "#3B82F6" },
-      { "name": "Clean Lambda Function", "builds": "An AWS Lambda function shipped as a container image", "package": "CleanLambdaFunction.Template", "docs": "https://leanmeancleanapps.github.io/lambda/", "repo": "https://github.com/LeanMeanCleanApps/CleanLambdaFunction", "hue": "#F59E0B" }
+      {
+        "name": "Clean Minimal API",
+        "builds": "An HTTP API on ASP.NET Core Minimal APIs",
+        "package": "CleanMinimalApi.Template",
+        "docs": "https://leanmeancleanapps.github.io/minimalapi/",
+        "repo": "https://github.com/LeanMeanCleanApps/CleanMinimalApi",
+        "hue": "#10B981",
+        "key": "minimalapi"
+      },
+      {
+        "name": "Clean Model Context Protocol",
+        "builds": "A Model Context Protocol server on the MCP C# SDK",
+        "package": "CleanModelContextProtocol.Template",
+        "docs": "https://leanmeancleanapps.github.io/mcp/",
+        "repo": "https://github.com/LeanMeanCleanApps/CleanModelContextProtocol",
+        "hue": "#8B5CF6",
+        "key": "mcp"
+      },
+      {
+        "name": "Clean GraphQL API",
+        "builds": "A GraphQL API on Hot Chocolate",
+        "package": "CleanGraphQLApi.Template",
+        "docs": "https://leanmeancleanapps.github.io/graphql/",
+        "repo": "https://github.com/LeanMeanCleanApps/CleanGraphQLApi",
+        "hue": "#EC4899",
+        "key": "graphql"
+      },
+      {
+        "name": "Clean Web API",
+        "builds": "An HTTP API on ASP.NET Core controllers",
+        "package": "CleanWebApi.Template",
+        "docs": "https://leanmeancleanapps.github.io/webapi/",
+        "repo": "https://github.com/LeanMeanCleanApps/CleanWebApi",
+        "hue": "#3B82F6",
+        "key": "webapi"
+      },
+      {
+        "name": "Clean Lambda Function",
+        "builds": "An AWS Lambda function shipped as a container image",
+        "package": "CleanLambdaFunction.Template",
+        "docs": "https://leanmeancleanapps.github.io/lambda/",
+        "repo": "https://github.com/LeanMeanCleanApps/CleanLambdaFunction",
+        "hue": "#F59E0B",
+        "key": "lambda"
+      }
     ]
   },
   "writing": [
-    { "title": "Full Stack Engineers Don't Exist!", "where": "Better Programming", "year": 2023, "url": "https://betterprogramming.pub/full-stack-engineers-dont-exist-37afb7a6b26c" },
-    { "title": "A Cleaner Startup for .NET 6's Minimal Approach", "where": "ITNEXT", "year": 2022, "url": "https://itnext.io/a-cleaner-startup-for-net-6s-minimal-approach-c1c05a672c6a" },
-    { "title": "Make Software Engineering Interviews More Creative", "where": "DEV", "year": 2022, "url": "https://dev.to/stphnwlsh/making-software-engineering-interviews-more-creative-and-interesting-23ac" },
-    { "title": "Benchmarking to the Bottom: Iterating Arrays in .NET", "where": "DEV", "year": 2022, "url": "https://dev.to/stphnwlsh/benchmarking-to-the-bottom-iterating-arrays-in-net-54fl" }
+    {
+      "title": "Full Stack Engineers Don't Exist!",
+      "where": "Better Programming",
+      "year": 2023,
+      "url": "https://medium.com/better-programming/full-stack-engineers-dont-exist-37afb7a6b26c"
+    },
+    {
+      "title": "Making Software Engineering Interviews More Creative and Interesting",
+      "where": "Medium",
+      "year": 2022,
+      "url": "https://medium.com/@stphnwlsh/making-software-engineering-interviews-more-creative-and-interesting-f25a9f001a2"
+    },
+    {
+      "title": "A Cleaner Startup for .NET 6's Minimal Approach",
+      "where": "ITNEXT",
+      "year": 2022,
+      "url": "https://medium.com/itnext/a-cleaner-startup-for-net-6s-minimal-approach-c1c05a672c6a"
+    },
+    {
+      "title": "Bending DateTime in .NET 8 to Test Your Code Better",
+      "where": "Level Up Coding",
+      "url": "https://medium.com/gitconnected/bending-datetime-in-net-8-to-test-your-code-better-52e5cd83be4c"
+    }
   ],
   "links": [
-    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/stphnwlsh/" },
-    { "name": "GitHub", "url": "https://github.com/stphnwlsh" },
-    { "name": "Medium", "url": "https://stphnwlsh.medium.com/" },
-    { "name": "DEV", "url": "https://dev.to/stphnwlsh" },
-    { "name": "Sponsor", "url": "https://github.com/sponsors/stphnwlsh" }
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/stphnwlsh/"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/stphnwlsh"
+    },
+    {
+      "name": "Medium",
+      "url": "https://stphnwlsh.medium.com/"
+    },
+    {
+      "name": "GitHub Sponsors",
+      "url": "https://github.com/sponsors/stphnwlsh"
+    }
   ],
-  "recommendations": "https://www.linkedin.com/in/stphnwlsh/details/recommendations/"
+  "writingIntro": "Every so often I have an opinion too long for a Slack message. These are the ones people actually read.",
+  "findIntro": "I'm on all of these, though LinkedIn is where I'm most likely to reply before my coffee goes cold."
 }
