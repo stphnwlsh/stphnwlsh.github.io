@@ -83,16 +83,16 @@
       "blurb": "Interview ideas that show how people think, not how well they memorise."
     },
     {
-      "title": "A Cleaner Startup for .NET 6's Minimal Approach",
+      "title": "A Cleaner Startup for .NET\u00a06's Minimal Approach",
       "where": "ITNEXT",
       "url": "https://medium.com/itnext/a-cleaner-startup-for-net-6s-minimal-approach-c1c05a672c6a",
       "blurb": "Tidying up a Minimal API's startup, and where the Clean Minimal API began."
     },
     {
-      "title": "Bending DateTime in .NET 8 to Test Your Code Better",
+      "title": "Bending DateTime in .NET\u00a08 to Test Your Code Better",
       "where": "Level Up Coding",
       "url": "https://medium.com/gitconnected/bending-datetime-in-net-8-to-test-your-code-better-52e5cd83be4c",
-      "blurb": "Taking control of time in .NET 8 so your tests stop arguing with the clock."
+      "blurb": "Taking control of time in .NET\u00a08 so your tests stop arguing with the clock."
     }
   ],
   "links": [

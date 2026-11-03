@@ -77,7 +77,7 @@ ${css}
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <aside class="strip nov" aria-label="Movember">
-    <p><strong>Growing a mo for Movember.</strong> <a href="${site.movember.url}" ${ext}>Please give: ${esc(site.movember.label)}</a></p>
+    <p><strong>Growing a mo for Movember.</strong> Please give: <a href="${site.movember.url}" ${ext}>${esc(site.movember.label)}</a></p>
   </aside>
 
   <main id="main">
