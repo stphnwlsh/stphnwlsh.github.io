@@ -39,6 +39,9 @@ jobs:
       - name: Build
         id: build
         run: node build.mjs
+        env:
+          # Public by design: the token ends up in the page. Leave the variable unset to build without analytics.
+          CLOUDFLARE_ANALYTICS_TOKEN: ${{ vars.CLOUDFLARE_ANALYTICS_TOKEN }}
 
       - name: Upload Site
         id: upload
