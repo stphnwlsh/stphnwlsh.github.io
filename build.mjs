@@ -18,6 +18,10 @@ const movember = process.env.MOVEMBER ? process.env.MOVEMBER === 'on' : month ==
 const year = new Date().getFullYear();
 const mo = movember ? '-movember' : ''; // favicon suffix
 const ext = 'target="_blank" rel="noopener"';
+// Cloudflare Web Analytics token, from the CLOUDFLARE_ANALYTICS_TOKEN repository variable. Unset means no counter.
+const analytics = process.env.CLOUDFLARE_ANALYTICS_TOKEN
+  ? `\n  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='${esc(JSON.stringify({ token: process.env.CLOUDFLARE_ANALYTICS_TOKEN }))}'></script>`
+  : '';
 
 const templates = site.lmca.templates.map(t => `
         <li class="card template" style="--hue: ${t.hue}">
@@ -133,8 +137,7 @@ ${css}
 
   <footer>
     <p>© ${year} ${esc(site.name)}. No cookies here, just a visit counter.</p>
-  </footer>
-  <script data-goatcounter="https://${site.goatcounter}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  </footer>${analytics}
 </body>
 </html>
 `;

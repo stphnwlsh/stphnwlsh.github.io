@@ -31,7 +31,7 @@ Every November the moustache comes back and the page goes with it: navy colours,
 
 [GitHub Actions](https://docs.github.com/en/actions) builds every pull request, and pushes to `main` publish straight to GitHub Pages with the official [deploy-pages](https://github.com/actions/deploy-pages) action, the same setup as the [Lean Mean Clean Apps](https://leanmeancleanapps.github.io) site. No `gh-pages` branch required.
 
-Visits are counted by [GoatCounter](https://www.goatcounter.com/): no cookies, no tracking you around the web, just a number that tells me whether anyone reads this.
+Visits are counted by [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/): no cookies, no tracking you around the web, just a number that tells me whether anyone reads this. The build only adds it when the `CLOUDFLARE_ANALYTICS_TOKEN` repository variable is set.
 
 ## A bit of history
 
