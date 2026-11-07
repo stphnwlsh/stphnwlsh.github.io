@@ -18,10 +18,17 @@ const movember = process.env.MOVEMBER ? process.env.MOVEMBER === 'on' : month ==
 const year = new Date().getFullYear();
 const mo = movember ? '-movember' : ''; // favicon suffix
 const ext = 'target="_blank" rel="noopener"';
-// Cloudflare Web Analytics token, from the CLOUDFLARE_ANALYTICS_TOKEN repository variable. Unset means no counter.
-const analytics = process.env.CLOUDFLARE_ANALYTICS_TOKEN
-  ? `\n  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='${esc(JSON.stringify({ token: process.env.CLOUDFLARE_ANALYTICS_TOKEN }))}'></script>`
-  : '';
+// Visit counters, each switched on by a repository variable. Unset means no counter. Neither sets cookies.
+// - Cloudflare Web Analytics: CLOUDFLARE_ANALYTICS_TOKEN.
+// - PostHog: POSTHOG_KEY, and POSTHOG_HOST outside the US cloud. Memory persistence keeps it cookie-free, at the cost
+//   of counting each page load as a new visitor.
+const { CLOUDFLARE_ANALYTICS_TOKEN: cfToken, POSTHOG_KEY: phKey, POSTHOG_HOST: phHost = 'https://us.i.posthog.com' } = process.env;
+const json = v => JSON.stringify(v).replace(/</g, '\\u003c');
+const posthogStub = `!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);`;
+const analytics = [
+  cfToken && `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='${esc(JSON.stringify({ token: cfToken }))}'></script>`,
+  phKey && `<script>\n    ${posthogStub}\n    posthog.init(${json(phKey)}, ${json({ api_host: phHost || 'https://us.i.posthog.com', defaults: '2025-05-24', persistence: 'memory' })});\n  </script>`,
+].filter(Boolean).map(s => `\n  ${s}`).join('');
 
 const templates = site.lmca.templates.map(t => `
         <li class="card template" style="--hue: ${t.hue}">
