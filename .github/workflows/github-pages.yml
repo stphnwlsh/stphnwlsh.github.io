@@ -40,10 +40,11 @@ jobs:
         id: build
         run: node build.mjs
         env:
-          # Public by design: these end up in the page. Leave a variable unset to build without that counter.
-          CLOUDFLARE_ANALYTICS_TOKEN: ${{ vars.CLOUDFLARE_ANALYTICS_TOKEN }}
-          POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
-          POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
+          # Public by design: these end up in the page, so a repository variable is enough, but a secret works too.
+          # Leave one unset to build without that counter.
+          CLOUDFLARE_ANALYTICS_TOKEN: ${{ vars.CLOUDFLARE_ANALYTICS_TOKEN || secrets.CLOUDFLARE_ANALYTICS_TOKEN }}
+          POSTHOG_KEY: ${{ vars.POSTHOG_KEY || secrets.POSTHOG_KEY }}
+          POSTHOG_HOST: ${{ vars.POSTHOG_HOST || secrets.POSTHOG_HOST }}
 
       - name: Check Analytics
         id: analytics
@@ -73,9 +74,9 @@ jobs:
           if [ "$failed" -eq 1 ] && [ "$level" = "error" ]; then exit 1; fi
         env:
           DEPLOYING: ${{ github.repository == 'stphnwlsh/stphnwlsh.github.io' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request' }}
-          CLOUDFLARE_TOKEN: ${{ vars.CLOUDFLARE_ANALYTICS_TOKEN }}
-          POSTHOG_KEY: ${{ vars.POSTHOG_KEY }}
-          POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
+          CLOUDFLARE_TOKEN: ${{ vars.CLOUDFLARE_ANALYTICS_TOKEN || secrets.CLOUDFLARE_ANALYTICS_TOKEN }}
+          POSTHOG_KEY: ${{ vars.POSTHOG_KEY || secrets.POSTHOG_KEY }}
+          POSTHOG_HOST: ${{ vars.POSTHOG_HOST || secrets.POSTHOG_HOST }}
 
       - name: Upload Site
         id: upload
