@@ -40,8 +40,43 @@ jobs:
         id: build
         run: node build.mjs
         env:
-          # Public by design: the token ends up in the page. Leave the variable unset to build without analytics.
-          CLOUDFLARE_ANALYTICS_TOKEN: ${{ vars.CLOUDFLARE_ANALYTICS_TOKEN }}
+          # Public by design: these end up in the page, so a repository variable is enough, but a secret works too.
+          # Leave one unset to build without that counter.
+          CLOUDFLARE_ANALYTICS_TOKEN: ${{ vars.CLOUDFLARE_ANALYTICS_TOKEN || secrets.CLOUDFLARE_ANALYTICS_TOKEN }}
+          POSTHOG_KEY: ${{ vars.POSTHOG_KEY || secrets.POSTHOG_KEY }}
+          POSTHOG_HOST: ${{ vars.POSTHOG_HOST || secrets.POSTHOG_HOST }}
+
+      - name: Check Analytics
+        id: analytics
+        # Fails a deploy of this site when a counter isn't set up, or didn't make it into the pages. Pull requests
+        # and forks only get a warning, so they still build without the variables.
+        run: |
+          level=warning
+          if [ "$DEPLOYING" = "true" ]; then level=error; fi
+          failed=0
+          problem() { echo "::$level::$1"; echo "- $1" >> "$GITHUB_STEP_SUMMARY"; failed=1; }
+
+          [[ "$CLOUDFLARE_TOKEN" =~ ^[A-Za-z0-9]+$ ]] || problem "CLOUDFLARE_ANALYTICS_TOKEN is missing or isn't a Cloudflare Web Analytics token."
+          [[ "$POSTHOG_KEY" =~ ^phc_[A-Za-z0-9]+$ ]] || problem "POSTHOG_KEY is missing or isn't a PostHog project key (phc_...)."
+          [ -z "$POSTHOG_HOST" ] || [[ "$POSTHOG_HOST" =~ ^https://[a-z0-9.-]+$ ]] || problem "POSTHOG_HOST must be an https:// address with no trailing slash, such as https://eu.i.posthog.com."
+
+          pages=$(find dist -name '*.html' | wc -l)
+          if [ -n "$CLOUDFLARE_TOKEN" ]; then
+            missing=$(grep -L "static.cloudflareinsights.com/beacon.min.js" -r dist --include='*.html' | wc -l)
+            [ "$missing" -eq 0 ] || problem "$missing of $pages pages have no Cloudflare beacon."
+          fi
+          if [ -n "$POSTHOG_KEY" ]; then
+            missing=$(grep -L "posthog.init" -r dist --include='*.html' | wc -l)
+            [ "$missing" -eq 0 ] || problem "$missing of $pages pages have no PostHog snippet."
+          fi
+
+          if [ "$failed" -eq 0 ]; then echo "Analytics: Cloudflare and PostHog are on all $pages pages." >> "$GITHUB_STEP_SUMMARY"; fi
+          if [ "$failed" -eq 1 ] && [ "$level" = "error" ]; then exit 1; fi
+        env:
+          DEPLOYING: ${{ github.repository == 'stphnwlsh/stphnwlsh.github.io' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request' }}
+          CLOUDFLARE_TOKEN: ${{ vars.CLOUDFLARE_ANALYTICS_TOKEN || secrets.CLOUDFLARE_ANALYTICS_TOKEN }}
+          POSTHOG_KEY: ${{ vars.POSTHOG_KEY || secrets.POSTHOG_KEY }}
+          POSTHOG_HOST: ${{ vars.POSTHOG_HOST || secrets.POSTHOG_HOST }}
 
       - name: Upload Site
         id: upload
