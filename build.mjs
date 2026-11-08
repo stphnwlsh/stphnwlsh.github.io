@@ -53,7 +53,7 @@ const html = `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${esc(site.name)}</title>
+  <title>${esc(site.name)} · ${esc(site.headline)}</title>
   <meta name="description" content="${esc(site.description)}">
   <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="${site.url}/">
@@ -62,12 +62,23 @@ const html = `<!doctype html>
   <link rel="apple-touch-icon" href="/img/apple-touch-icon${mo}.png">
   <meta property="og:type" content="profile">
   <meta property="og:url" content="${site.url}/">
-  <meta property="og:title" content="${esc(site.name)}">
+  <meta property="og:title" content="${esc(site.name)} · ${esc(site.headline)}">
   <meta property="og:description" content="${esc(site.description)}">
   <meta property="og:image" content="${site.url}/og/${movember ? 'card-movember' : 'card'}.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">${json({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: site.name,
+    url: `${site.url}/`,
+    image: `${site.url}/img/stubble-560.webp`,
+    jobTitle: site.headline,
+    worksFor: { '@type': 'Organization', name: site.employer.name },
+    address: { '@type': 'PostalAddress', addressLocality: 'Neenah', addressRegion: 'WI', addressCountry: 'US' },
+    sameAs: [...site.links.map(l => l.url), site.lmca.nuget],
+  })}</script>
   <link rel="preload" href="/fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <script>
@@ -124,8 +135,10 @@ ${css}
         <h2 id="templates-title"><a href="${site.lmca.url}" ${ext}>Lean Mean Clean Apps</a></h2>
       </div>
       <p class="lede">${esc(site.lmca.intro)}</p>
+      <p class="lede trust">${esc(site.lmca.trust.before)}<a href="${site.lmca.nuget}" ${ext}>${esc(site.lmca.trust.nuget)}</a>${esc(site.lmca.trust.middle)}<a href="${site.lmca.github}" ${ext}>${esc(site.lmca.trust.github)}</a>${esc(site.lmca.trust.after)}</p>
       <ul class="grid templates">${templates}
       </ul>
+      <p class="lede sponsor">${esc(site.lmca.sponsor.before)}<a href="${site.lmca.sponsor.url}" ${ext}>${esc(site.lmca.sponsor.link)}</a>${esc(site.lmca.sponsor.after)}</p>
     </section>
 
     <section id="writing" aria-labelledby="writing-title">
