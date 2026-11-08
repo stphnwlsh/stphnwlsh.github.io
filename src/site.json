@@ -1,6 +1,10 @@
 {
   "name": "Stephen Walsh",
   "handle": "stphnwlsh",
+  "headline": "Software engineering leader",
+  "employer": {
+    "name": "Gradera"
+  },
   "url": "https://stphnwlsh.github.io",
   "tagline": [
     "Husband · Father · Software Engineer",
@@ -8,8 +12,8 @@
   ],
   "description": "Husband, father and software engineering leader in Neenah, WI. Powered by coffee, haunted by Liverpool, moustached every November. I don't bite… often.",
   "about": [
-    "Hello! I'm a software engineering leader in Neenah, Wisconsin, by way of Australia. My favourite spot is where leading teams meets staying hands-on in the code: helping engineers grow, building teams that enjoy working together, and still caring about how the software is put together. I spend my days thinking about and solving complex problems, mostly in .NET, and now and then I write about engineering, interviews and careers on Medium.",
-    "In my spare time I look after Lean Mean Clean Apps, a small family of dotnet new templates with a low-ceremony take on Clean Architecture: fewer layers than an onion, more than a sandwich. Away from the keyboard I'm a husband and father first, a long-suffering Liverpool supporter, and usually holding a coffee. Every November I grow a mo and raise money for Movember. The moustache only visits in November, which everyone agrees is for the best. Feel free to say hi, I don't bite… often."
+    "Hello! I'm a software engineering leader in Neenah, Wisconsin, by way of Australia. My favourite spot is where leading teams meets staying hands-on in the code: helping engineers grow, building teams that enjoy working together, and still caring about how the software is put together. These days that's at Gradera, where I lead a distributed team delivering a new multi-tenant product, mostly in .NET, and where AI-assisted, spec-driven development is a team practice rather than a personal productivity trick. Now and then I write about engineering, interviews and careers on Medium.",
+    "In my spare time I look after Lean Mean Clean Apps, a small family of dotnet new templates that I give away. Away from the keyboard I'm a husband and father first, a long-suffering Liverpool supporter, and usually holding a coffee. Every November I grow a mo and raise money for Movember. The moustache only visits in November, which everyone agrees is for the best. Feel free to say hi, I don't bite… often."
   ],
   "movember": {
     "url": "https://movember.com/m/stephenwalsh",
@@ -19,7 +23,15 @@
   "lmca": {
     "url": "https://leanmeancleanapps.github.io",
     "github": "https://github.com/LeanMeanCleanApps",
+    "nuget": "https://www.nuget.org/profiles/stphnwlsh",
     "intro": "What I build when the kids are asleep: five dotnet new templates with a low-ceremony take on Clean Architecture. Fewer layers than an onion, more than a sandwich. No investors, no roadmap deck, just a small team (me) having fun and giving it away.",
+    "trust": {
+      "before": "More than 300,000 downloads on ",
+      "nuget": "NuGet",
+      "middle": " so far, and every line of it is on ",
+      "github": "GitHub",
+      "after": "."
+    },
     "templates": [
       {
         "name": "Clean Minimal API",
@@ -66,7 +78,13 @@
         "hue": "#F59E0B",
         "key": "lambda"
       }
-    ]
+    ],
+    "sponsor": {
+      "before": "If one of them has saved you a week, ",
+      "link": "GitHub Sponsors",
+      "after": " is how to say thanks.",
+      "url": "https://github.com/sponsors/stphnwlsh"
+    }
   },
   "writing": [
     {
@@ -82,16 +100,16 @@
       "blurb": "Interview ideas that show how people think, not how well they memorise."
     },
     {
-      "title": "A Cleaner Startup for .NET\u00a06's Minimal Approach",
+      "title": "A Cleaner Startup for .NET 6's Minimal Approach",
       "where": "ITNEXT",
       "url": "https://medium.com/itnext/a-cleaner-startup-for-net-6s-minimal-approach-c1c05a672c6a",
       "blurb": "Tidying up a Minimal API's startup, and where the Clean Minimal API began."
     },
     {
-      "title": "Bending DateTime in .NET\u00a08 to Test Your Code Better",
+      "title": "Bending DateTime in .NET 8 to Test Your Code Better",
       "where": "Level Up Coding",
       "url": "https://medium.com/gitconnected/bending-datetime-in-net-8-to-test-your-code-better-52e5cd83be4c",
-      "blurb": "Taking control of time in .NET\u00a08 so your tests stop arguing with the clock."
+      "blurb": "Taking control of time in .NET 8 so your tests stop arguing with the clock."
     }
   ],
   "links": [
