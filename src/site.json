@@ -26,7 +26,7 @@
     "nuget": "https://www.nuget.org/profiles/stphnwlsh",
     "intro": "What I build when the kids are asleep: five dotnet new templates with a low-ceremony take on Clean Architecture. Fewer layers than an onion, more than a sandwich. No investors, no roadmap deck, just a small team (me) having fun and giving it away.",
     "trust": {
-      "before": "More than 300,000 downloads on ",
+      "before": "More than 180,000 downloads on ",
       "nuget": "NuGet",
       "middle": " so far, and every line of it is on ",
       "github": "GitHub",
