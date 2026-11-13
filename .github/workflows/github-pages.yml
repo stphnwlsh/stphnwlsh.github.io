@@ -60,13 +60,14 @@ jobs:
           [[ "$POSTHOG_KEY" =~ ^phc_[A-Za-z0-9]+$ ]] || problem "POSTHOG_KEY is missing or isn't a PostHog project key (phc_...)."
           [ -z "$POSTHOG_HOST" ] || [[ "$POSTHOG_HOST" =~ ^https://[a-z0-9.-]+$ ]] || problem "POSTHOG_HOST must be an https:// address with no trailing slash, such as https://eu.i.posthog.com."
 
-          pages=$(find dist -name '*.html' | wc -l)
+          # Search Console verification files (public/google*.html) aren't pages and must stay exactly as Google issued them.
+          pages=$(find dist -name '*.html' ! -name 'google*.html' | wc -l)
           if [ -n "$CLOUDFLARE_TOKEN" ]; then
-            missing=$(grep -L "static.cloudflareinsights.com/beacon.min.js" -r dist --include='*.html' | wc -l)
+            missing=$(grep -L "static.cloudflareinsights.com/beacon.min.js" -r dist --include='*.html' --exclude='google*.html' | wc -l)
             [ "$missing" -eq 0 ] || problem "$missing of $pages pages have no Cloudflare beacon."
           fi
           if [ -n "$POSTHOG_KEY" ]; then
-            missing=$(grep -L "posthog.init" -r dist --include='*.html' | wc -l)
+            missing=$(grep -L "posthog.init" -r dist --include='*.html' --exclude='google*.html' | wc -l)
             [ "$missing" -eq 0 ] || problem "$missing of $pages pages have no PostHog snippet."
           fi
 
