@@ -2,7 +2,7 @@
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/stphnwlsh/stphnwlsh.github.io/github-pages.yml?label=Build%20Pipeline&logo=github&style=for-the-badge)](https://github.com/stphnwlsh/stphnwlsh.github.io/actions/workflows/github-pages.yml)
 
-My corner of the internet: one page that says who I am, shows off the [Lean Mean Clean Apps](https://leanmeancleanapps.github.io) templates, points at the things I've written and tells you where else to find me. It lives at [stphnwlsh.github.io](https://stphnwlsh.github.io).
+My corner of the internet: one page that says who I am, shows off the [Lean Mean Clean Apps](https://leanmeanclean.dev) templates, points at the things I've written and tells you where else to find me. It lives at [stphnwlsh.github.io](https://stphnwlsh.github.io).
 
 ## How it's built
 
@@ -29,7 +29,7 @@ Every November the moustache comes back and the page goes with it: navy colours,
 
 ## Publishing
 
-[GitHub Actions](https://docs.github.com/en/actions) builds every pull request, and pushes to `main` publish straight to GitHub Pages with the official [deploy-pages](https://github.com/actions/deploy-pages) action, the same setup as the [Lean Mean Clean Apps](https://leanmeancleanapps.github.io) site. No `gh-pages` branch required.
+[GitHub Actions](https://docs.github.com/en/actions) builds every pull request, and pushes to `main` publish straight to GitHub Pages with the official [deploy-pages](https://github.com/actions/deploy-pages) action, the same setup as the [Lean Mean Clean Apps](https://leanmeanclean.dev) site. No `gh-pages` branch required.
 
 Visits are counted by [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/) and [PostHog](https://posthog.com/), side by side until one wins: no cookies, no tracking you around the web, just a number that tells me whether anyone reads this. The build only adds each one when its repository variable or secret is set (`CLOUDFLARE_ANALYTICS_TOKEN`, and `POSTHOG_KEY` with an optional `POSTHOG_HOST`), and a deploy fails if either is missing.
 

@@ -21,7 +21,7 @@
     "why": "I've got more than one reason: my Dad, who won his fight against prostate cancer, my friend Bryan, who's in remission after his, and Derrick and Sean, who went far too soon. If you'd like to help change the face of men's health, every donation counts."
   },
   "lmca": {
-    "url": "https://leanmeancleanapps.github.io",
+    "url": "https://leanmeanclean.dev",
     "github": "https://github.com/LeanMeanCleanApps",
     "nuget": "https://www.nuget.org/profiles/stphnwlsh",
     "intro": "What I build when the kids are asleep: five dotnet new templates with a low-ceremony take on Clean Architecture. Fewer layers than an onion, more than a sandwich. No investors, no roadmap deck, just a small team (me) having fun and giving it away.",
@@ -37,7 +37,7 @@
         "name": "Clean Minimal API",
         "builds": "An HTTP API on ASP.NET Core Minimal APIs",
         "package": "CleanMinimalApi.Template",
-        "docs": "https://leanmeancleanapps.github.io/minimalapi/",
+        "docs": "https://leanmeanclean.dev/minimalapi/",
         "repo": "https://github.com/LeanMeanCleanApps/CleanMinimalApi",
         "hue": "#10B981",
         "key": "minimalapi"
@@ -46,7 +46,7 @@
         "name": "Clean Model Context Protocol",
         "builds": "A Model Context Protocol server on the MCP C# SDK",
         "package": "CleanModelContextProtocol.Template",
-        "docs": "https://leanmeancleanapps.github.io/mcp/",
+        "docs": "https://leanmeanclean.dev/mcp/",
         "repo": "https://github.com/LeanMeanCleanApps/CleanModelContextProtocol",
         "hue": "#8B5CF6",
         "key": "mcp"
@@ -55,7 +55,7 @@
         "name": "Clean GraphQL API",
         "builds": "A GraphQL API on Hot Chocolate",
         "package": "CleanGraphQLApi.Template",
-        "docs": "https://leanmeancleanapps.github.io/graphql/",
+        "docs": "https://leanmeanclean.dev/graphql/",
         "repo": "https://github.com/LeanMeanCleanApps/CleanGraphQLApi",
         "hue": "#EC4899",
         "key": "graphql"
@@ -64,7 +64,7 @@
         "name": "Clean Web API",
         "builds": "An HTTP API on ASP.NET Core controllers",
         "package": "CleanWebApi.Template",
-        "docs": "https://leanmeancleanapps.github.io/webapi/",
+        "docs": "https://leanmeanclean.dev/webapi/",
         "repo": "https://github.com/LeanMeanCleanApps/CleanWebApi",
         "hue": "#3B82F6",
         "key": "webapi"
@@ -73,7 +73,7 @@
         "name": "Clean Lambda Function",
         "builds": "An AWS Lambda function shipped as a container image",
         "package": "CleanLambdaFunction.Template",
-        "docs": "https://leanmeancleanapps.github.io/lambda/",
+        "docs": "https://leanmeanclean.dev/lambda/",
         "repo": "https://github.com/LeanMeanCleanApps/CleanLambdaFunction",
         "hue": "#F59E0B",
         "key": "lambda"
