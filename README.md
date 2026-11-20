@@ -33,7 +33,7 @@ Every November the moustache comes back and the page goes with it: navy colours,
 
 The custom domain lives in the repository's Pages settings rather than a `CNAME` file, because Actions deploys don't read one. GitHub redirects the old stphnwlsh.github.io address to stphnwlsh.dev, so links nobody updated still land in the right place.
 
-Visits are counted by [PostHog](https://posthog.com/), which beat Cloudflare Web Analytics in a fair fight: no cookies, no tracking you around the web, just a number that tells me whether anyone reads this. The build only adds it when the `POSTHOG_KEY` repository variable or secret is set (with an optional `POSTHOG_HOST`), and a deploy fails if it's missing.
+Visits are counted by [PostHog](https://posthog.com/), which beat Cloudflare Web Analytics in a fair fight: no cookies, no tracking you around the web, just a number that tells me whether anyone reads this. The build only adds it when the `POSTHOG_KEY` repository variable or secret is set and a deploy fails if it's missing. `POSTHOG_HOST` points it at relay.stphnwlsh.dev, PostHog's free managed reverse proxy on a subdomain of my own, so ad blockers don't quietly eat the count.
 
 ## A bit of history
 

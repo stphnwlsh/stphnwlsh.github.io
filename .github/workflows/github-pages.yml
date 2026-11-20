@@ -56,7 +56,7 @@ jobs:
           problem() { echo "::$level::$1"; echo "- $1" >> "$GITHUB_STEP_SUMMARY"; failed=1; }
 
           [[ "$POSTHOG_KEY" =~ ^phc_[A-Za-z0-9]+$ ]] || problem "POSTHOG_KEY is missing or isn't a PostHog project key (phc_...)."
-          [ -z "$POSTHOG_HOST" ] || [[ "$POSTHOG_HOST" =~ ^https://[a-z0-9.-]+$ ]] || problem "POSTHOG_HOST must be an https:// address with no trailing slash, such as https://eu.i.posthog.com."
+          [ -z "$POSTHOG_HOST" ] || [[ "$POSTHOG_HOST" =~ ^https://[a-z0-9.-]+$ ]] || problem "POSTHOG_HOST must be an https:// address with no trailing slash, such as https://relay.stphnwlsh.dev."
 
           # Search Console verification files (public/google*.html) aren't pages and must stay exactly as Google issued them.
           pages=$(find dist -name '*.html' ! -name 'google*.html' | wc -l)
