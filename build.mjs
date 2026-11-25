@@ -37,6 +37,22 @@ const analytics = phKey ? `
     posthog.init(${json(phKey)}, ${json({ api_host: phHost || 'https://us.i.posthog.com', ui_host: phUiHost || 'https://us.posthog.com', defaults: '2025-05-24', cookieless_mode: 'always', disable_surveys: true })});
   </script>` : '';
 
+// Shared by the page and the 404 page.
+const movemberScript = `  <script>
+    // Movember mode follows the visitor's date. ?movember=1 or ?movember=0 previews either look.
+    (() => {
+      const q = new URLSearchParams(location.search).get('movember');
+      const on = q ? q === '1' : new Date().getMonth() === 10;
+      document.documentElement.toggleAttribute('data-movember', on);
+      // The favicon grows a moustache too.
+      for (const l of document.querySelectorAll('link[rel~="icon"], link[rel="apple-touch-icon"]'))
+        l.href = l.getAttribute('href').replace(/(favicon|apple-touch-icon)(-movember)?/, on ? '$1-movember' : '$1');
+    })();
+  </script>`;
+const icons = `  <link rel="icon" href="/img/favicon${mo}.svg" type="image/svg+xml">
+  <link rel="icon" href="/img/favicon${mo}-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon${mo}.png">`;
+
 const templates = site.lmca.templates.map(t => `
         <li class="card template" style="--hue: ${t.hue}">
           <img class="on-light" src="/img/lmca/${t.key}-light.svg" width="72" height="72" alt="${esc(t.name)} logo" aria-hidden="true" loading="lazy">
@@ -65,9 +81,7 @@ const html = `<!doctype html>
   <meta name="author" content="${esc(site.name)}">
   <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="${site.url}/">
-  <link rel="icon" href="/img/favicon${mo}.svg" type="image/svg+xml">
-  <link rel="icon" href="/img/favicon${mo}-32.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="/img/apple-touch-icon${mo}.png">
+${icons}
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="${esc(site.name)}">
   <meta property="og:locale" content="en_AU">
@@ -77,7 +91,7 @@ const html = `<!doctype html>
   <meta property="og:url" content="${site.url}/">
   <meta property="og:title" content="${esc(site.name)} · ${esc(site.headline)}">
   <meta property="og:description" content="${esc(site.description)}">
-  <meta property="og:image" content="${site.url}/og/${movember ? 'card-movember' : 'card'}.png">
+  <meta property="og:image" content="${site.url}/og/${movember ? 'card-movember' : 'card'}.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="${esc(site.name)} · ${esc(site.headline)}">
@@ -110,17 +124,7 @@ const html = `<!doctype html>
   })}</script>
   <link rel="preload" href="/fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <script>
-    // Movember mode follows the visitor's date. ?movember=1 or ?movember=0 previews either look.
-    (() => {
-      const q = new URLSearchParams(location.search).get('movember');
-      const on = q ? q === '1' : new Date().getMonth() === 10;
-      document.documentElement.toggleAttribute('data-movember', on);
-      // The favicon grows a moustache too.
-      for (const l of document.querySelectorAll('link[rel~="icon"], link[rel="apple-touch-icon"]'))
-        l.href = l.getAttribute('href').replace(/(favicon|apple-touch-icon)(-movember)?/, on ? '$1-movember' : '$1');
-    })();
-  </script>
+${movemberScript}
   <style>
 ${css}
   </style>
@@ -201,6 +205,35 @@ mkdirSync('dist');
 cpSync('public', 'dist', { recursive: true });
 writeFileSync('dist/index.html', html);
 writeFileSync('dist/.nojekyll', '');
+// GitHub Pages serves 404.html for any address that doesn't exist. It stays out of search results.
+writeFileSync('dist/404.html', `<!doctype html>
+<html lang="en-AU"${movember ? ' data-movember' : ''}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found · ${esc(site.name)}</title>
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light dark">
+${icons}
+${movemberScript}
+  <style>
+${css}
+  </style>
+</head>
+<body>
+  <main id="main">
+    <section class="hero not-found">
+      <div class="hero-text">
+        <p class="chip">404</p>
+        <h1>Nothing here.</h1>
+        <p class="tagline"><span>This page doesn't exist, or it wandered off.</span> <span>Like my moustache every 1 December.</span></p>
+        <ul class="pills"><li><a class="pill" href="/">Back to the home page</a></li></ul>
+      </div>
+    </section>
+  </main>${analytics}
+</body>
+</html>
+`);
 writeFileSync('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>

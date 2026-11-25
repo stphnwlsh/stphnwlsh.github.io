@@ -75,6 +75,10 @@ h1 { font-size: clamp(64px, 11vw, 128px); letter-spacing: -0.01em; }
   outline: 2px solid var(--ring); outline-offset: 40px; pointer-events: none; }
 .face img { position: relative; display: block; width: 100%; height: auto; }
 
+/* 404 */
+.not-found { grid-template-columns: 1fr; min-height: 70vh; align-items: center; }
+.not-found .pills { margin-top: 32px; }
+
 /* About */
 .about { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; }
 .prose { max-width: 68ch; }
@@ -131,6 +135,7 @@ footer p { margin: 0; }
   .face { order: 1; width: min(280px, 70%); justify-self: center; }
   .hero-text { padding-bottom: 40px; text-align: center; }
   .tagline { font-size: clamp(16px, 4.6vw, 20px); }
+  .not-found .pills { justify-content: center; }
   .about { grid-template-columns: 1fr; }
   .qr { justify-self: start; }
 }
