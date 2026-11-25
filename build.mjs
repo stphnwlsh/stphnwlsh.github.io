@@ -21,7 +21,7 @@ const mo = movember ? '-movember' : ''; // favicon suffix
 const ext = 'target="_blank" rel="noopener"';
 // The sitemap's lastmod is the date of the last commit, so the daily rebuild doesn't tell search engines the page
 // changed when it didn't. IndexNow (in the workflow) reads it to decide whether to ping Bing.
-const lastmod = (() => { try { return execSync('git log -1 --format=%cs', { encoding: 'utf8' }).trim(); } catch { return new Date().toISOString().slice(0, 10); } })();
+const lastmod = (() => { try { return execSync('git log -1 --format=%cI', { encoding: 'utf8' }).trim(); } catch { return new Date().toISOString(); } })();
 // The visit counter, PostHog, is switched on by the POSTHOG_KEY repository variable. POSTHOG_HOST points it at the
 // relay (PostHog's managed reverse proxy on our own subdomain, so ad blockers leave it alone), and ui_host keeps the
 // toolbar and links on PostHog itself. Unset means no counter. Cookieless mode stores nothing in the browser and
