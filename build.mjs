@@ -8,6 +8,7 @@
 // (US Central time) so link previews pick the right card, and a few lines of script in the page
 // check the visitor's own date too, so the switch never waits on a rebuild.
 import { readFileSync, writeFileSync, rmSync, mkdirSync, cpSync } from 'node:fs';
+import { execSync } from 'node:child_process';
 
 const site = JSON.parse(readFileSync('src/site.json', 'utf8'));
 const css = readFileSync('src/styles.css', 'utf8');
@@ -18,6 +19,9 @@ const movember = process.env.MOVEMBER ? process.env.MOVEMBER === 'on' : month ==
 const year = new Date().getFullYear();
 const mo = movember ? '-movember' : ''; // favicon suffix
 const ext = 'target="_blank" rel="noopener"';
+// The sitemap's lastmod is the date of the last commit, so the daily rebuild doesn't tell search engines the page
+// changed when it didn't. IndexNow (in the workflow) reads it to decide whether to ping Bing.
+const lastmod = (() => { try { return execSync('git log -1 --format=%cI', { encoding: 'utf8' }).trim(); } catch { return new Date().toISOString(); } })();
 // The visit counter, PostHog, is switched on by the POSTHOG_KEY repository variable. POSTHOG_HOST points it at the
 // relay (PostHog's managed reverse proxy on our own subdomain, so ad blockers leave it alone), and ui_host keeps the
 // toolbar and links on PostHog itself. Unset means no counter. Cookieless mode stores nothing in the browser and
@@ -33,10 +37,26 @@ const analytics = phKey ? `
     posthog.init(${json(phKey)}, ${json({ api_host: phHost || 'https://us.i.posthog.com', ui_host: phUiHost || 'https://us.posthog.com', defaults: '2025-05-24', cookieless_mode: 'always', disable_surveys: true })});
   </script>` : '';
 
+// Shared by the page and the 404 page.
+const movemberScript = `  <script>
+    // Movember mode follows the visitor's date. ?movember=1 or ?movember=0 previews either look.
+    (() => {
+      const q = new URLSearchParams(location.search).get('movember');
+      const on = q ? q === '1' : new Date().getMonth() === 10;
+      document.documentElement.toggleAttribute('data-movember', on);
+      // The favicon grows a moustache too.
+      for (const l of document.querySelectorAll('link[rel~="icon"], link[rel="apple-touch-icon"]'))
+        l.href = l.getAttribute('href').replace(/(favicon|apple-touch-icon)(-movember)?/, on ? '$1-movember' : '$1');
+    })();
+  </script>`;
+const icons = `  <link rel="icon" href="/img/favicon${mo}.svg" type="image/svg+xml">
+  <link rel="icon" href="/img/favicon${mo}-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon${mo}.png">`;
+
 const templates = site.lmca.templates.map(t => `
         <li class="card template" style="--hue: ${t.hue}">
-          <img class="on-light" src="/img/lmca/${t.key}-light.svg" width="72" height="72" alt="" loading="lazy">
-          <img class="on-dark" src="/img/lmca/${t.key}.svg" width="72" height="72" alt="" loading="lazy">
+          <img class="on-light" src="/img/lmca/${t.key}-light.svg" width="72" height="72" alt="${esc(t.name)} logo" aria-hidden="true" loading="lazy">
+          <img class="on-dark" src="/img/lmca/${t.key}.svg" width="72" height="72" alt="${esc(t.name)} logo" aria-hidden="true" loading="lazy">
           <h3>${esc(t.name)}</h3>
           <p>${esc(t.builds)}</p>
           <p class="card-links"><a class="badge" href="${t.docs}" ${ext}>Docs</a><a class="badge" href="${t.repo}" ${ext}>GitHub</a></p>
@@ -52,49 +72,59 @@ const writing = site.writing.map(w => `
 const links = site.links.map(l => `<li><a class="pill" href="${l.url}" ${ext}>${esc(l.name)}</a></li>`).join('');
 
 const html = `<!doctype html>
-<html lang="en"${movember ? ' data-movember' : ''}>
+<html lang="en-AU"${movember ? ' data-movember' : ''}>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(site.name)} · ${esc(site.headline)}</title>
   <meta name="description" content="${esc(site.description)}">
+  <meta name="author" content="${esc(site.name)}">
   <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="${site.url}/">
-  <link rel="icon" href="/img/favicon${mo}.svg" type="image/svg+xml">
-  <link rel="icon" href="/img/favicon${mo}-32.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="/img/apple-touch-icon${mo}.png">
+${icons}
   <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="${esc(site.name)}">
+  <meta property="og:locale" content="en_AU">
+  <meta property="profile:first_name" content="${esc(site.name.split(' ')[0])}">
+  <meta property="profile:last_name" content="${esc(site.name.split(' ').slice(1).join(' '))}">
+  <meta property="profile:username" content="${esc(site.handle)}">
   <meta property="og:url" content="${site.url}/">
   <meta property="og:title" content="${esc(site.name)} · ${esc(site.headline)}">
   <meta property="og:description" content="${esc(site.description)}">
-  <meta property="og:image" content="${site.url}/og/${movember ? 'card-movember' : 'card'}.png">
+  <meta property="og:image" content="${site.url}/og/${movember ? 'card-movember' : 'card'}.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="${esc(site.name)} · ${esc(site.headline)}">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
   <script type="application/ld+json">${json({
     '@context': 'https://schema.org',
+    '@graph': [{
+      '@type': 'ProfilePage',
+      '@id': `${site.url}/#page`,
+      url: `${site.url}/`,
+      name: `${site.name} · ${site.headline}`,
+      inLanguage: 'en-AU',
+      dateModified: lastmod,
+      isPartOf: { '@type': 'WebSite', '@id': `${site.url}/#website`, url: `${site.url}/`, name: site.name },
+      mainEntity: { '@id': `${site.url}/#person` },
+    }, {
     '@type': 'Person',
+    '@id': `${site.url}/#person`,
     name: site.name,
+    alternateName: site.handle,
     url: `${site.url}/`,
     image: `${site.url}/img/stubble-560.webp`,
     jobTitle: site.headline,
     worksFor: { '@type': 'Organization', name: site.employer.name },
     address: { '@type': 'PostalAddress', addressLocality: 'Neenah', addressRegion: 'WI', addressCountry: 'US' },
+    knowsAbout: site.knowsAbout,
     sameAs: [...site.links.map(l => l.url), site.lmca.nuget],
+    }],
   })}</script>
   <link rel="preload" href="/fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <script>
-    // Movember mode follows the visitor's date. ?movember=1 or ?movember=0 previews either look.
-    (() => {
-      const q = new URLSearchParams(location.search).get('movember');
-      const on = q ? q === '1' : new Date().getMonth() === 10;
-      document.documentElement.toggleAttribute('data-movember', on);
-      // The favicon grows a moustache too.
-      for (const l of document.querySelectorAll('link[rel~="icon"], link[rel="apple-touch-icon"]'))
-        l.href = l.getAttribute('href').replace(/(favicon|apple-touch-icon)(-movember)?/, on ? '$1-movember' : '$1');
-    })();
-  </script>
+${movemberScript}
   <style>
 ${css}
   </style>
@@ -115,7 +145,7 @@ ${css}
       <div class="face" aria-hidden="true">
         <!-- The biggest thing on screen, so it loads first and only one photo is fetched. The build picks it for today's
              date and the script swaps it if the visitor's date (or ?movember=) disagrees. -->
-        <img src="/img/${movember ? 'movember' : 'stubble'}-560.webp" width="560" height="560" alt="" fetchpriority="high"
+        <img src="/img/${movember ? 'movember' : 'stubble'}-560.webp" width="560" height="560" alt="Photo of ${esc(site.name)}" fetchpriority="high"
              data-nov="/img/movember-560.webp" data-not-nov="/img/stubble-560.webp">
         <script>
           (i => { const src = i.dataset[document.documentElement.hasAttribute('data-movember') ? 'nov' : 'notNov']; if (i.getAttribute('src') !== src) i.src = src; })(document.currentScript.previousElementSibling);
@@ -139,7 +169,7 @@ ${css}
 
     <section id="templates" aria-labelledby="templates-title">
       <div class="section-head">
-        <img src="/img/lmca-spectrum.svg" width="48" height="48" alt="" loading="lazy">
+        <img src="/img/lmca-spectrum.svg" width="48" height="48" alt="Lean Mean Clean Apps logo" aria-hidden="true" loading="lazy">
         <h2 id="templates-title"><a href="${site.lmca.url}" ${ext}>Lean Mean Clean Apps</a></h2>
       </div>
       <p class="lede">${esc(site.lmca.intro)}</p>
@@ -175,4 +205,63 @@ mkdirSync('dist');
 cpSync('public', 'dist', { recursive: true });
 writeFileSync('dist/index.html', html);
 writeFileSync('dist/.nojekyll', '');
+// GitHub Pages serves 404.html for any address that doesn't exist. It stays out of search results.
+writeFileSync('dist/404.html', `<!doctype html>
+<html lang="en-AU"${movember ? ' data-movember' : ''}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found · ${esc(site.name)}</title>
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light dark">
+${icons}
+${movemberScript}
+  <style>
+${css}
+  </style>
+</head>
+<body>
+  <main id="main">
+    <section class="hero not-found">
+      <div class="hero-text">
+        <p class="chip">404</p>
+        <h1>Nothing here.</h1>
+        <p class="tagline"><span>This page doesn't exist, or it wandered off.</span> <span>Like my moustache every 1 December.</span></p>
+        <ul class="pills"><li><a class="pill" href="/">Back to the home page</a></li></ul>
+      </div>
+    </section>
+  </main>${analytics}
+</body>
+</html>
+`);
+writeFileSync('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${site.url}/</loc>
+    <lastmod>${lastmod}</lastmod>
+  </url>
+</urlset>
+`);
+// llms.txt (llmstxt.org): the page as plain Markdown, for AI assistants that read it instead of the HTML.
+writeFileSync('dist/llms.txt', `# ${site.name}
+
+> ${site.description}
+
+${site.about.join('\n\n')}
+
+## Lean Mean Clean Apps
+
+${site.lmca.intro} ${site.lmca.trust.before}NuGet${site.lmca.trust.middle}GitHub${site.lmca.trust.after}
+
+- [Lean Mean Clean Apps docs](${site.lmca.url}/): every template's docs, plus an llms.txt of their own
+${site.lmca.templates.map(t => `- [${t.name}](${t.docs}): ${t.builds}. \`dotnet new install ${t.package}\`, source on [GitHub](${t.repo})`).join('\n')}
+
+## Writing
+
+${site.writing.map(w => `- [${w.title}](${w.url}): ${w.blurb} (${w.where})`).join('\n')}
+
+## Find me
+
+${site.links.map(l => `- [${l.name}](${l.url})`).join('\n')}
+`);
 console.log(`built dist/ (Movember mode ${movember ? 'on' : 'off'})`);
